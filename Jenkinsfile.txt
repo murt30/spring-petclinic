@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+	
+	node {
+		checkout scm
+	}
+    
+	stages {
+        stage('Build') {
+            steps {
+                bat 'make'
+				archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
+        }
+        stage('Test') {
+            steps {
+                /* `make check` returns non-zero on test failures,
+				* using 'true' to allow the pipeline to continue nonetheless
+				*/
+				bat 'make check || true'
+				junit '**/target/surefire-reports/*.xml'
+				
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
