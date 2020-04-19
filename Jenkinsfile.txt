@@ -10,16 +10,17 @@ pipeline {
             }
         }
         stage('Test') {
-            steps {
-                /* `make check` returns non-zero on test failures,
-				* using 'true' to allow the pipeline to continue nonetheless
-				*/
-				/* bat 'make check || true' */
-				/* junit "/target/surefire-reports/*.xml"*/
-				/*step([$class: 'JUnitResultArchiver', testResults: '**/target/**/*.xml']*/
+			step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
+           /* steps {
+                 `make check` returns non-zero on test failures,
+				 using 'true' to allow the pipeline to continue nonetheless
 				
-				step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
-            }
+				 bat 'make check || true' 
+				 junit "/target/surefire-reports/*.xml"
+				step([$class: 'JUnitResultArchiver', testResults: '**/target/**/*.xml']
+				
+				
+            }*/
         }
         stage('Deploy') {
             steps {
