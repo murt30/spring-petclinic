@@ -4,7 +4,7 @@ pipeline {
 	stages {
         stage('Build') {
             steps {
-                bat 'make'
+               // bat 'make'
 				archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
@@ -13,7 +13,7 @@ pipeline {
                 /* `make check` returns non-zero on test failures,
 				* using 'true' to allow the pipeline to continue nonetheless
 				*/
-				bat 'make check || true'
+				//bat 'make check || true'
 				junit '**/target/surefire-reports/*.xml'
             }
         }
