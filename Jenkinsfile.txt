@@ -15,7 +15,7 @@ pipeline {
 				* using 'true' to allow the pipeline to continue nonetheless
 				*/
 				//bat 'make check || true'
-				junit "**/target/surefire-reports/*.xml"
+				junit "/target/surefire-reports/*.xml"
 				//step([$class: 'JUnitResultArchiver', testResults: '**/target/**/*.xml'])
             }
         }
