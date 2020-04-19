@@ -16,7 +16,7 @@ pipeline {
 				*/
 				//bat 'make check || true'
 				//junit '**/target/surefire-reports/*.xml'
-				step([$class: 'JUnitResultArchiver', testResults: 'c://Users/murt/.jenkins/workspace/PetClinic/target/surefire-reports/*.xml'])
+				step([$class: 'JUnitResultArchiver', testResults: '**/target/**/*.xml'])
             }
         }
         stage('Deploy') {
