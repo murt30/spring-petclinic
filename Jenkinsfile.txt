@@ -2,21 +2,22 @@ pipeline {
     agent any
     
 	stages {
-       /* stage('Build') {
+        stage('Build') {
             steps {
                // bat 'make'
 				//archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
 				echo "Skipping archiveArtifacts"
             }
-        }*/
+        }
         stage('Test') {
             steps {
                 /* `make check` returns non-zero on test failures,
 				* using 'true' to allow the pipeline to continue nonetheless
 				*/
-				//bat 'make check || true'
-				//junit "/target/surefire-reports/*.xml"
-				//step([$class: 'JUnitResultArchiver', testResults: '**/target/**/*.xml']
+				/*bat 'make check || true'
+				*junit "/target/surefire-reports/*.xml"
+				*step([$class: 'JUnitResultArchiver', testResults: '**/target/**/*.xml']
+				*/
 				step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
             }
         }
