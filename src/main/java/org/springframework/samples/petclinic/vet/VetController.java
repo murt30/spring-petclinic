@@ -42,7 +42,7 @@ class VetController {
 		// objects so it is simpler for Object-Xml mapping
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vets.findAll());
-		model.put("vets", vets);
+		model.put("vetts", vets);
 		return "vets/vetList";
 	}
 
